@@ -22,7 +22,14 @@ class HomeScreen extends StatelessWidget {
                 final launch = state.launches[index];
                 return ListTile(
                   title: Text(launch.name),
-                  subtitle: Text(launch.date.toString()),
+                  subtitle: Column(
+                    children: [
+                      Text(launch.id),
+                      Text(launch.date.toString()),
+                      Text(launch.success.toString()),
+                      Text(launch.details),
+                    ],
+                  ),
                 );
               },
             );

@@ -12,15 +12,15 @@ class Launch extends Equatable {
   final String name;
   final DateTime date;
   final bool success;
-  final String? details;
+  final String details;
 
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
-        id: json['id'],
-        name: json['name'],
-        date: DateTime.parse(json['date_utc']),
+        id: json['id'] ?? 'No id generated',
+        name: json['name'] ?? 'Name Unknown',
+        date: DateTime.parse(json['date_utc'] ?? 'No date appointed'),
         success: json['success'] ?? false,
-        details: json['details']);
+        details: json['details'] ?? 'No details available');
   }
   @override
   List<Object?> get props => [id, name, date, success, details];
