@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_app/cubit/launch_cubit.dart';
 import 'package:spacex_app/widgets/loaded_lounches.dart';
 import 'package:spacex_app/widgets/loading_widget.dart';
+import 'package:spacex_app/widgets/my_app_bar.dart';
+import 'package:spacex_app/widgets/my_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +13,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<LaunchCubit>().fetchAllLaunches();
     return Scaffold(
-      appBar: AppBar(title: const Text("All Launches")),
+      appBar: MyAppBar(),
+      drawer: MyDrawer(),
       body: BlocBuilder<LaunchCubit, LaunchState>(
         builder: (context, state) {
           if (state is LaunchLoading) {
@@ -21,6 +24,7 @@ class HomeScreen extends StatelessWidget {
               itemCount: state.launches.length,
               itemBuilder: (context, index) {
                 final launch = state.launches[index];
+
                 return LoadedLounches(launch: launch);
               },
             );

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MyTheme {
-  static const Color _primaryColor = Color(0xFF003366);
-  static const Color _hintColor = Color(0xFFB0BEC5);
+  static const Color primaryColor = Color(0xFF003366);
+  static const Color hintColor = Color(0xFFB0BEC5);
 
   static ThemeData get lightTheme {
     return ThemeData(
-      primaryColor: _primaryColor,
-      hintColor: _hintColor,
+      primaryColor: primaryColor,
+      hintColor: hintColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: Colors.grey,
       appBarTheme: AppBarTheme(
-        color: _primaryColor,
+        color: primaryColor,
         elevation: 0,
         titleTextStyle: TextStyle(
           color: Colors.white,
