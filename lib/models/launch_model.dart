@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 class Launch extends Equatable {
   const Launch({
@@ -13,6 +14,10 @@ class Launch extends Equatable {
   final DateTime date;
   final bool success;
   final String details;
+
+  String get formattedDate {
+    return DateFormat('dd/MM/yyyy').format(date);
+  }
 
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(

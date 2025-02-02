@@ -20,10 +20,10 @@ class LoadedLounches extends StatelessWidget {
           title: Text(launch.name),
           subtitle: Column(
             children: [
-              Text(launch.id),
-              Text(launch.date.toString()),
-              Text(launch.success.toString()),
-              Text(launch.details),
+              Text("ID: ${launch.id}"),
+              Text("Date: ${launch.formattedDate}"),
+              Text("Success: ${launch.success ? 'Yes' : 'No'}"),
+              Text("Details: ${launch.details}"),
             ],
           ),
         ),
