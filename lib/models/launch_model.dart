@@ -22,6 +22,17 @@ class Launch extends Equatable {
         success: json['success'] ?? false,
         details: json['details'] ?? 'No details available');
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'date_utc': date.toIso8601String(),
+      'success': success,
+      'details': details,
+    };
+  }
+
   @override
   List<Object?> get props => [id, name, date, success, details];
 }
