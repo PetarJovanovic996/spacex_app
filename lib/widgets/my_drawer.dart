@@ -1,5 +1,3 @@
-// () => Navigator.of(context).pushNamed(Routes.singleLaunchScreen)
-
 import 'package:flutter/material.dart';
 import 'package:spacex_app/core/my_theme.dart';
 import 'package:spacex_app/core/routes.dart';
@@ -25,6 +23,13 @@ class MyDrawer extends StatelessWidget {
                 fontSize: 24,
               ),
             ),
+          ),
+          ListTile(
+            title: const Text('All Launches'),
+            onTap: () => Navigator.of(context).pushNamed(Routes.homeScreen),
+          ),
+          SizedBox(
+            height: 10,
           ),
           ListTile(
             title: const Text('Future Launches'),
