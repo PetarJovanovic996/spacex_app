@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:spacex_app/routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spacex_app/cubit/launch_cubit.dart';
+import 'package:spacex_app/widgets/loaded_lounches.dart';
+import 'package:spacex_app/widgets/loading_widget.dart';
+import 'package:spacex_app/widgets/my_app_bar.dart';
+import 'package:spacex_app/widgets/my_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,23 +12,31 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Home Screen'),
-            SizedBox(
-              width: 10,
-            ),
-            ElevatedButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(Routes.singleLaunchScreen),
-              child: Text(
-                'Next Screen',
+      appBar: MyAppBar(),
+      drawer: MyDrawer(),
+      body: BlocBuilder<LaunchCubit, LaunchState>(
+        builder: (context, state) {
+          if (state is LaunchLoading) {
+            return LoadingWidget();
+          } else if (state is LaunchLoaded) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<LaunchCubit>().refreshLaunches();
+              },
+              child: ListView.builder(
+                itemCount: state.launches.length,
+                itemBuilder: (context, index) {
+                  final launch = state.launches[index];
+
+                  return LoadedLounches(launch: launch);
+                },
               ),
-            )
-          ],
-        ),
+            );
+          } else if (state is LaunchError) {
+            return Center(child: Text(state.message));
+          }
+          return Container();
+        },
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spacex_app/routes.dart';
+import 'package:spacex_app/core/routes.dart';
 
 class SingleLaunchesScreen extends StatelessWidget {
   const SingleLaunchesScreen({super.key});

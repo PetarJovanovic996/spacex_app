@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:spacex_app/routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spacex_app/app_bloc_observer.dart';
+import 'package:spacex_app/core/my_theme.dart';
+import 'package:spacex_app/cubit/launch_cubit.dart';
+import 'package:spacex_app/core/routes.dart';
+import 'package:spacex_app/services/cache_service.dart';
+import 'package:spacex_app/services/spacex_service.dart';
 
 void main() {
-  runApp(const MyApp());
+  Bloc.observer = AppBlocObserver();
+  runApp(
+    BlocProvider(
+      create: (context) => LaunchCubit(
+        SpaceXService(),
+        CacheService(),
+      ),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //theme: ...,
+      theme: MyTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       title: 'Named Routes',
       onGenerateRoute: MyRouter.onGenerateRoute,
