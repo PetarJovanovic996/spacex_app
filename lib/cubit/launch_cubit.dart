@@ -38,6 +38,7 @@ class LaunchCubit extends Cubit<LaunchState> {
     }
   }
 
+  // TODO: This method is not needed, for refresh, we can just call [fetchAllLaunches]
   Future<void> refreshLaunches() async {
     emit(LaunchLoading());
     try {
