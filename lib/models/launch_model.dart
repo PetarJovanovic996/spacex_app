@@ -19,6 +19,10 @@ class Launch extends Equatable {
     return DateFormat('dd/MM/yyyy').format(date);
   }
 
+  // BONUS TIP: Use [json_serializable] package instead of hand writing toJson & fromJson
+  // this will allow you to generate them immediately, rather than writing them on your own,
+  // which saves you time!
+  // https://pub.dev/packages/json_serializable
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
         id: json['id'] ?? 'No id generated',
