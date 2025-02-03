@@ -11,7 +11,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<LaunchCubit>().fetchAllLaunches();
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),

@@ -7,7 +7,10 @@ import 'package:spacex_app/services/spacex_service.dart';
 part 'launch_state.dart';
 
 class LaunchCubit extends Cubit<LaunchState> {
-  LaunchCubit(this._spaceXService, this._cacheService) : super(LaunchInitial());
+  LaunchCubit(this._spaceXService, this._cacheService)
+      : super(LaunchInitial()) {
+    fetchAllLaunches();
+  }
 
   final SpaceXService _spaceXService;
   final CacheService _cacheService;
