@@ -19,13 +19,18 @@ class HomeScreen extends StatelessWidget {
           if (state is LaunchLoading) {
             return LoadingWidget();
           } else if (state is LaunchLoaded) {
-            return ListView.builder(
-              itemCount: state.launches.length,
-              itemBuilder: (context, index) {
-                final launch = state.launches[index];
-
-                return LoadedLounches(launch: launch);
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<LaunchCubit>().refreshLaunches();
               },
+              child: ListView.builder(
+                itemCount: state.launches.length,
+                itemBuilder: (context, index) {
+                  final launch = state.launches[index];
+
+                  return LoadedLounches(launch: launch);
+                },
+              ),
             );
           } else if (state is LaunchError) {
             return Center(child: Text(state.message));

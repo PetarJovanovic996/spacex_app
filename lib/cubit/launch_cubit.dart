@@ -37,4 +37,14 @@ class LaunchCubit extends Cubit<LaunchState> {
       emit(LaunchError(e.toString()));
     }
   }
+
+  Future<void> refreshLaunches() async {
+    emit(LaunchLoading());
+    try {
+      final List<Launch> allLaunches = await _spaceXService.getAllLaunches();
+      emit(LaunchLoaded(allLaunches));
+    } catch (e) {
+      emit(LaunchError(e.toString()));
+    }
+  }
 }
