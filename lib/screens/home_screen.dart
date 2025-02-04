@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           } else if (state is LaunchLoaded) {
             return RefreshIndicator(
               onRefresh: () async {
-                context.read<LaunchCubit>().refreshLaunches();
+                context.read<LaunchCubit>().fetchAllLaunches();
               },
               child: ListView.builder(
                 itemCount: state.launches.length,

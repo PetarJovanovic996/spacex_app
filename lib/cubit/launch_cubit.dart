@@ -38,14 +38,5 @@ class LaunchCubit extends Cubit<LaunchState> {
     }
   }
 
-  // TODO: This method is not needed, for refresh, we can just call [fetchAllLaunches]
-  Future<void> refreshLaunches() async {
-    emit(LaunchLoading());
-    try {
-      final List<Launch> allLaunches = await _spaceXService.getAllLaunches();
-      emit(LaunchLoaded(allLaunches));
-    } catch (e) {
-      emit(LaunchError(e.toString()));
-    }
-  }
+  // done: This method is not needed, for refresh, we can just call [fetchAllLaunches]
 }
