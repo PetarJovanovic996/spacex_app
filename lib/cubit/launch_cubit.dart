@@ -37,6 +37,6 @@ class LaunchCubit extends Cubit<LaunchState> {
       emit(LaunchError(e.toString()));
     }
   }
-
-  // done: This method is not needed, for refresh, we can just call [fetchAllLaunches]
 }
+
+      // done: This method is not needed, for refresh, we can just call [fetchAllLaunches]

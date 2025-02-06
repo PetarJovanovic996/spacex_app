@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: MyAppBar(title: 'All launches'),
       drawer: MyDrawer(),
       body: BlocBuilder<LaunchCubit, LaunchState>(
         builder: (context, state) {

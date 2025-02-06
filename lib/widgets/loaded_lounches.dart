@@ -13,7 +13,9 @@ class LoadedLounches extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(Routes.singleLaunchScreen),
+      onTap: () => Navigator.of(context).pushNamed(
+        Routes.singleLaunchScreen,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
