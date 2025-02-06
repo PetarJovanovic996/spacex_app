@@ -6,7 +6,10 @@ import 'package:spacex_app/services/spacex_service.dart';
 part 'past_state.dart';
 
 class PastCubit extends Cubit<PastState> {
-  PastCubit(this._spaceXService) : super(PastInitial());
+  PastCubit(this._spaceXService) : super(PastInitial()) {
+    fetchPastLaunches();
+    fetchLatestLaunch();
+  }
 
   final SpaceXService _spaceXService;
 
@@ -16,7 +19,7 @@ class PastCubit extends Cubit<PastState> {
 
       emit(PastLaunchesLoaded(pastLaunches));
     } catch (e) {
-      emit(LaunchError(e.toString()));
+      emit(PastLaunchError(e.toString()));
     }
   }
 
@@ -26,7 +29,7 @@ class PastCubit extends Cubit<PastState> {
 
       emit(LatestLoaded(latestLaunch));
     } catch (e) {
-      emit(LaunchError(e.toString()));
+      emit(PastLaunchError(e.toString()));
     }
   }
 }

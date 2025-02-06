@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spacex_app/cubit/past_cubit.dart';
+import 'package:spacex_app/widgets/my_app_bar.dart';
+import 'package:spacex_app/widgets/my_drawer.dart';
 
 class PastLaunchesScreen extends StatelessWidget {
   const PastLaunchesScreen({super.key});
@@ -6,7 +10,64 @@ class PastLaunchesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('Past Launches Screen')),
+      appBar: MyAppBar(title: 'Past Launches'),
+      drawer: MyDrawer(),
+      body: BlocBuilder<PastCubit, PastState>(
+        builder: (context, state) {
+          if (state is PastLaunchesLoaded) {
+            return Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 1.0,
+                  mainAxisSpacing: 10.0,
+                ),
+                itemCount: state.launches.length,
+                itemBuilder: (context, index) {
+                  final launch = state.launches[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Card(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(launch.name),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text("ID: ${launch.id}"),
+                            Text("Date: ${launch.formattedDate}"),
+                            Text("Success: ${launch.success ? 'Yes' : 'No'}"),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Details: ${launch.details}",
+                              style: TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              maxLines: 3,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
+          } else if (state is PastLaunchError) {
+            return Center(child: Text(state.message));
+          }
+          return Container();
+        },
+      ),
     );
   }
 }

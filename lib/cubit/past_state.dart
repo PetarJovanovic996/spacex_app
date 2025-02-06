@@ -16,8 +16,8 @@ class PastLaunchesLoaded extends PastState {
   List<Object?> get props => [launches];
 }
 
-class LaunchError extends PastState {
-  const LaunchError(this.message);
+class PastLaunchError extends PastState {
+  const PastLaunchError(this.message);
   final String message;
   @override
   List<Object?> get props => [message];
