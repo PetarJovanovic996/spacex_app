@@ -33,4 +33,33 @@ class SpaceXService {
     final data = json.decode(response.body);
     return Launch.fromJson(data);
   }
+
+  Future<Launch> getLatestLaunch(String id) async {
+    final response = await http.get(
+      Uri.parse("$url/launches/latest"),
+    );
+    if (response.statusCode != 200) {
+      throw Exception(
+          "Failed to load launch. Status code: ${response.statusCode}");
+    }
+    final data = json.decode(response.body);
+    return Launch.fromJson(data);
+  }
+
+  Future<List<Launch>> getPastLaunches() async {
+    try {
+      final response = await http.get(
+        Uri.parse("$url/launches/past"),
+      );
+      if (response.statusCode != 200) {
+        throw Exception(
+            "Failed to load past launches. Status code: ${response.statusCode}");
+      }
+
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((json) => Launch.fromJson(json)).toList();
+    } catch (e) {
+      throw Exception("Failed to load past launches: $e");
+    }
+  }
 }
