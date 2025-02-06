@@ -34,7 +34,7 @@ class SpaceXService {
     return Launch.fromJson(data);
   }
 
-  Future<Launch> getLatestLaunch(String id) async {
+  Future<Launch> getLatestLaunch() async {
     final response = await http.get(
       Uri.parse("$url/launches/latest"),
     );
