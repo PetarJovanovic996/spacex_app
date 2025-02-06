@@ -4,7 +4,7 @@ abstract class PastState extends Equatable {
   const PastState();
 }
 
-final class PastInitial extends PastState {
+class PastInitial extends PastState {
   @override
   List<Object> get props => [];
 }
