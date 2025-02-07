@@ -21,4 +21,16 @@ class SpaceXService {
       throw Exception("Failed to load launches: $e");
     }
   }
+
+  Future<Launch> getSingleLaunch(String id) async {
+    final response = await http.get(
+      Uri.parse("$url/launches/$id"),
+    );
+    if (response.statusCode != 200) {
+      throw Exception(
+          "Failed to load launch. Status code: ${response.statusCode}");
+    }
+    final data = json.decode(response.body);
+    return Launch.fromJson(data);
+  }
 }

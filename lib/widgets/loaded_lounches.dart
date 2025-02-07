@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_app/core/routes.dart';
+import 'package:spacex_app/cubit/single_cubit.dart';
 import 'package:spacex_app/models/launch_model.dart';
 
 class LoadedLounches extends StatelessWidget {
-  const LoadedLounches({
-    super.key,
-    required this.launch,
-  });
+  const LoadedLounches({super.key, required this.launch});
 
   final Launch launch;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(Routes.singleLaunchScreen),
+      onTap: () {
+        context.read<SingleCubit>().fetchSingleLaunches(launch.id);
+        Navigator.of(context).pushNamed(
+          Routes.singleLaunchScreen,
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(

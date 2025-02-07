@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: MyAppBar(title: 'All launches'),
       drawer: MyDrawer(),
       body: BlocBuilder<LaunchCubit, LaunchState>(
         builder: (context, state) {
@@ -21,14 +21,16 @@ class HomeScreen extends StatelessWidget {
           } else if (state is LaunchLoaded) {
             return RefreshIndicator(
               onRefresh: () async {
-                context.read<LaunchCubit>().refreshLaunches();
+                context.read<LaunchCubit>().fetchAllLaunches();
               },
               child: ListView.builder(
                 itemCount: state.launches.length,
                 itemBuilder: (context, index) {
                   final launch = state.launches[index];
 
-                  return LoadedLounches(launch: launch);
+                  return LoadedLounches(
+                    launch: launch,
+                  );
                 },
               ),
             );
