@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_app/cubit/past_cubit.dart';
+import 'package:spacex_app/widgets/loading_widget.dart';
 
 class PastLaunches extends StatelessWidget {
   const PastLaunches({
@@ -11,7 +12,10 @@ class PastLaunches extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PastCubit, PastState>(
       builder: (context, state) {
-        if (state is PastLaunchesLoaded) {
+        if (state is PastLaunchLoading) {
+          state is LoadingWidget;
+        }
+        if (state is PastAndLatestLoaded) {
           return Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -19,9 +23,9 @@ class PastLaunches extends StatelessWidget {
                 crossAxisSpacing: 1.0,
                 mainAxisSpacing: 10.0,
               ),
-              itemCount: state.launches.length,
+              itemCount: state.pastLaunches.length,
               itemBuilder: (context, index) {
-                final launch = state.launches[index];
+                final launch = state.pastLaunches[index];
                 return Padding(
                   padding: const EdgeInsets.all(1.0),
                   child: Card(

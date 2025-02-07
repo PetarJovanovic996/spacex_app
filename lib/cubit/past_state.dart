@@ -9,6 +9,11 @@ class PastInitial extends PastState {
   List<Object> get props => [];
 }
 
+class PastLaunchLoading extends PastState {
+  @override
+  List<Object?> get props => [];
+}
+
 class PastLaunchesLoaded extends PastState {
   const PastLaunchesLoaded(this.launches);
   final List<Launch> launches;
@@ -28,4 +33,14 @@ class LatestLoaded extends PastState {
   final Launch launch;
   @override
   List<Object?> get props => [launch];
+}
+
+class PastAndLatestLoaded extends PastState {
+  const PastAndLatestLoaded(this.pastLaunches, this.latestLaunch);
+
+  final List<Launch> pastLaunches;
+  final Launch latestLaunch;
+
+  @override
+  List<Object?> get props => [pastLaunches, latestLaunch];
 }

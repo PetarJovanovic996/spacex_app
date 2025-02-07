@@ -7,13 +7,13 @@ part 'past_state.dart';
 
 class PastCubit extends Cubit<PastState> {
   PastCubit(this._spaceXService) : super(PastInitial()) {
-    fetchPastLaunches();
-    fetchLatestLaunch();
+    fetchCombinedLaunches();
   }
 
   final SpaceXService _spaceXService;
 
   Future<void> fetchPastLaunches() async {
+    emit(PastLaunchLoading());
     try {
       final pastLaunches = await _spaceXService.getPastLaunches();
 
@@ -24,10 +24,29 @@ class PastCubit extends Cubit<PastState> {
   }
 
   Future<void> fetchLatestLaunch() async {
+    emit(PastLaunchLoading());
     try {
       final latestLaunch = await _spaceXService.getLatestLaunch();
 
       emit(LatestLoaded(latestLaunch));
+    } catch (e) {
+      emit(PastLaunchError(e.toString()));
+    }
+  }
+
+  Future<void> fetchCombinedLaunches() async {
+    emit(PastLaunchLoading());
+    try {
+      final results = await Future.wait([
+        _spaceXService.getPastLaunches(),
+        _spaceXService.getLatestLaunch(),
+      ]);
+
+      final pastLaunches = results[0] as List<Launch>;
+
+      final latestLaunch = results[1] as Launch;
+
+      emit(PastAndLatestLoaded(pastLaunches, latestLaunch));
     } catch (e) {
       emit(PastLaunchError(e.toString()));
     }

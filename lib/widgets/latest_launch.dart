@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_app/cubit/past_cubit.dart';
+import 'package:spacex_app/widgets/loading_widget.dart';
 
 class LatestLaunch extends StatelessWidget {
   const LatestLaunch({super.key});
@@ -9,8 +10,11 @@ class LatestLaunch extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PastCubit, PastState>(
       builder: (context, state) {
-        if (state is LatestLoaded) {
-          final launch = state.launch;
+        if (state is PastLaunchLoading) {
+          state is LoadingWidget;
+        }
+        if (state is PastAndLatestLoaded) {
+          final launch = state.latestLaunch;
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
