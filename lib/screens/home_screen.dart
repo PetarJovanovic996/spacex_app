@@ -28,7 +28,10 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final launch = state.launches[index];
 
-                  return LoadedLounches(launch: launch);
+                  return LoadedLounches(
+                    launch: launch,
+                    id: launch.id,
+                  );
                 },
               ),
             );

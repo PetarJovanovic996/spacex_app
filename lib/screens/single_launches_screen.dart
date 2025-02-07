@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:spacex_app/cubit/single_cubit.dart';
+import 'package:spacex_app/widgets/loading_widget.dart';
 
 import 'package:spacex_app/widgets/my_app_bar.dart';
 
@@ -10,13 +11,15 @@ class SingleLaunchesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SingleCubit>().fetchSingleLaunches('5eb87d42ffd86e000604b384');
     return Scaffold(
       appBar: MyAppBar(
         title: 'Choosen Launch',
       ),
       body: BlocBuilder<SingleCubit, SingleState>(
         builder: (context, state) {
+          if (state is SingleLaunchLoaded) {
+            state is LoadingWidget;
+          }
           if (state is SingleLaunchLoaded) {
             final launch = state.launch;
             return Padding(

@@ -7,6 +7,7 @@ part 'single_state.dart';
 
 class SingleCubit extends Cubit<SingleState> {
   SingleCubit(this._spaceXService) : super(SingleInitial());
+
   final SpaceXService _spaceXService;
 
   Future<void> fetchSingleLaunches(String id) async {
