@@ -30,7 +30,6 @@ class HomeScreen extends StatelessWidget {
 
                   return LoadedLounches(
                     launch: launch,
-                    id: launch.id,
                   );
                 },
               ),

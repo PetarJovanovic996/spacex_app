@@ -5,16 +5,15 @@ import 'package:spacex_app/cubit/single_cubit.dart';
 import 'package:spacex_app/models/launch_model.dart';
 
 class LoadedLounches extends StatelessWidget {
-  const LoadedLounches({super.key, required this.launch, required this.id});
+  const LoadedLounches({super.key, required this.launch});
 
   final Launch launch;
-  final String id;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<SingleCubit>().fetchSingleLaunches(id);
+        context.read<SingleCubit>().fetchSingleLaunches(launch.id);
         Navigator.of(context).pushNamed(
           Routes.singleLaunchScreen,
         );
