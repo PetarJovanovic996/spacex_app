@@ -14,6 +14,7 @@ class PastCubit extends Cubit<PastState> {
   final SpaceXService _spaceXService;
 
   Future<void> fetchPastLaunches() async {
+    // TODO: Missing loading state
     try {
       final pastLaunches = await _spaceXService.getPastLaunches();
 
@@ -24,6 +25,7 @@ class PastCubit extends Cubit<PastState> {
   }
 
   Future<void> fetchLatestLaunch() async {
+    // TODO: Missing loading state
     try {
       final latestLaunch = await _spaceXService.getLatestLaunch();
 

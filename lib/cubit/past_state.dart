@@ -9,6 +9,8 @@ class PastInitial extends PastState {
   List<Object> get props => [];
 }
 
+// TODO: Fix. 2 success states will always cancel each other on UI/
+//
 class PastLaunchesLoaded extends PastState {
   const PastLaunchesLoaded(this.launches);
   final List<Launch> launches;
