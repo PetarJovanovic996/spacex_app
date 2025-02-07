@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_app/cubit/launch_cubit.dart';
-import 'package:spacex_app/widgets/loaded_lounches.dart';
 import 'package:spacex_app/widgets/loading_widget.dart';
 import 'package:spacex_app/widgets/my_app_bar.dart';
 import 'package:spacex_app/widgets/my_drawer.dart';
+import 'package:spacex_app/widgets/single_launch_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,9 +28,7 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final launch = state.launches[index];
 
-                  return LoadedLounches(
-                    launch: launch,
-                  );
+                  return SingleLaunchWidget(launch: launch);
                 },
               ),
             );
