@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_app/core/routes.dart';
+import 'package:spacex_app/cubit/single_cubit.dart';
 import 'package:spacex_app/models/launch_model.dart';
 
 class SingleLaunchWidget extends StatelessWidget {
@@ -10,9 +12,12 @@ class SingleLaunchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(
-        Routes.singleLaunchScreen,
-      ),
+      onTap: () {
+        context.read<SingleCubit>().fetchSingleLaunches(launch.id);
+        Navigator.of(context).pushNamed(
+          Routes.singleLaunchScreen,
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(1.0),
         child: Card(
