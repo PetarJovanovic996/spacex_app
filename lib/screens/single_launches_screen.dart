@@ -17,9 +17,10 @@ class SingleLaunchesScreen extends StatelessWidget {
       ),
       body: BlocBuilder<SingleCubit, SingleState>(
         builder: (context, state) {
-          if (state is SingleLaunchLoaded) {
-            state is LoadingWidget;
+          if (state is SingleLaunchLoading) {
+            return LoadingWidget();
           }
+
           if (state is SingleLaunchLoaded) {
             final launch = state.launch;
             return Padding(

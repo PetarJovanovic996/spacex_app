@@ -11,7 +11,7 @@ class SingleCubit extends Cubit<SingleState> {
   final SpaceXService _spaceXService;
 
   Future<void> fetchSingleLaunches(String id) async {
-    // TODO: Add missing loading state
+    emit(SingleLaunchLoading());
     try {
       final singleLaunch = await _spaceXService.getSingleLaunch(id);
 

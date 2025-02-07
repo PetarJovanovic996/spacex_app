@@ -9,6 +9,11 @@ final class SingleInitial extends SingleState {
   List<Object?> get props => [];
 }
 
+final class SingleLaunchLoading extends SingleState {
+  @override
+  List<Object?> get props => [];
+}
+
 class SingleLaunchLoaded extends SingleState {
   const SingleLaunchLoaded(this.launch);
   final Launch launch;
