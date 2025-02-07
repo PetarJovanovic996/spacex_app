@@ -42,22 +42,25 @@ class Launch extends Equatable {
   List<Object?> get props => [id, name, date, success, details];
 }
 
-
-  // BONUS TIP: Use [json_serializable] package instead of hand writing toJson & fromJson
-  // this will allow you to generate them immediately, rather than writing them on your own,
-  // which saves you time!
-  // https://pub.dev/packages/json_serializable
+// BONUS TIP: Use [json_serializable] package instead of hand writing toJson & fromJson
+// this will allow you to generate them immediately, rather than writing them on your own,
+// which saves you time!
+// https://pub.dev/packages/json_serializable
 
 // COMMENT:
 //ON BONUS TIP
-// dobio sam generisani kod automatski koji mi je naglasneno da se ne 
-//modifikuje / pa nisam ... ovo ces mi nedje objasnit 
+// dobio sam generisani kod automatski koji mi je naglasneno da se ne
+//modifikuje / pa nisam ... ovo ces mi nedje objasnit
 //vjerovatno ima opcija da se to rijesi
 //problem je sto mi se ne dodaju ove vrijednosti ako je null
 //pa mi povlacenje api puca / jer ima objekata sa null vrijednostima
 // u svakom slucaju uspio sam da automatski generisem fajl
 // imas ga u nastavku...
 
+// Proci cemo ovo zajedno da ti pokazem, ali objekti koji imaju null polja na bekendu
+// moraju da imaju ta ista polja oznacena kao nullable u modelu koji koristis za mapiranje
+
+// dakle promjenom na String?, i ponovnim generisanjem json_serializable fajla, on ce to odraditi sam
 
 // // // GENERATED CODE - DO NOT MODIFY BY HAND
 
@@ -82,7 +85,6 @@ class Launch extends Equatable {
 //       'success': instance.success,
 //       'details': instance.details,
 //     };
-
 
 // ////MODEL MOJ
 
