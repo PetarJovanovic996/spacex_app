@@ -21,18 +21,21 @@ class FutureLaunchError extends FutureState {
   List<Object?> get props => [message];
 }
 
-class FutureLoaded extends FutureState {
-  const FutureLoaded(this.futureLaunches);
+class FutureAndNextLaunchLoaded extends FutureState {
+  const FutureAndNextLaunchLoaded(this.futureLaunches, this.nextLaunch);
 
   final List<Launch> futureLaunches;
+  final Launch nextLaunch;
 
   @override
-  List<Object?> get props => [futureLaunches];
+  List<Object?> get props => [futureLaunches, nextLaunch];
 }
 
 class NextLaunchLoaded extends FutureState {
-  const NextLaunchLoaded(this.launch);
-  final Launch launch;
+  const NextLaunchLoaded(this.nextLaunch);
+
+  final Launch nextLaunch;
+
   @override
-  List<Object?> get props => [launch];
+  List<Object?> get props => [nextLaunch];
 }

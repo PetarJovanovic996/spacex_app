@@ -32,7 +32,7 @@ class MyDrawer extends StatelessWidget {
             height: 10,
           ),
           ListTile(
-            title: const Text('Future Launches'),
+            title: const Text('Next and Future Launches'),
             onTap: () =>
                 Navigator.of(context).pushNamed(Routes.futureLaunchesScreen),
           ),
