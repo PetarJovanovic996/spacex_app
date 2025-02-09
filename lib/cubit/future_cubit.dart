@@ -23,19 +23,12 @@ class FutureCubit extends Cubit<FutureState> {
     }
   }
 
-  Future<void> fetchFutureAndNextLaunch() async {
+  Future<void> fetchFutureLaunches() async {
     emit(FutureLaunchLoading());
     try {
-      final results = await Future.wait([
-        _spaceXService.getNextLaunch(),
-        _spaceXService.getFutureLaunches(),
-      ]);
+      final futureLaunches = await _spaceXService.getFutureLaunches();
 
-      final nextLaunch = results[0] as Launch;
-
-      final futureLaunches = results[1] as List<Launch>;
-
-      emit(FutureAndNextLaunchLoaded(futureLaunches, nextLaunch));
+      emit(FutureLaunchLoaded(futureLaunches));
     } catch (e) {
       emit(FutureLaunchError(e.toString()));
     }
@@ -43,10 +36,9 @@ class FutureCubit extends Cubit<FutureState> {
 
   Future<void> toggleLaunches() async {
     try {
-      final nextLaunch = await _spaceXService.getNextLaunch();
       final futureLaunches = await _spaceXService.getFutureLaunches();
       if (state is NextLaunchLoaded) {
-        emit(FutureAndNextLaunchLoaded(futureLaunches, nextLaunch));
+        emit(FutureLaunchLoaded(futureLaunches));
       } else {
         final nextLaunch = await _spaceXService.getNextLaunch();
         emit(NextLaunchLoaded(nextLaunch));

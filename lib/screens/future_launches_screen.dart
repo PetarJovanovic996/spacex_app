@@ -35,7 +35,7 @@ class FutureLaunchesScreen extends StatelessWidget {
             );
           }
 
-          if (state is FutureAndNextLaunchLoaded) {
+          if (state is FutureLaunchLoaded) {
             return Column(
               children: [
                 _ToggleButton(title: 'NextLaunch'),
