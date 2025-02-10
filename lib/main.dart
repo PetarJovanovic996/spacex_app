@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_app/app_bloc_observer.dart';
 import 'package:spacex_app/core/my_theme.dart';
+import 'package:spacex_app/cubit/future_cubit.dart';
 import 'package:spacex_app/cubit/launch_cubit.dart';
 import 'package:spacex_app/core/routes.dart';
 import 'package:spacex_app/cubit/past_cubit.dart';
@@ -27,6 +28,11 @@ void main() {
         ),
         BlocProvider(
           create: (context) => PastCubit(
+            SpaceXService(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => FutureCubit(
             SpaceXService(),
           ),
         ),
